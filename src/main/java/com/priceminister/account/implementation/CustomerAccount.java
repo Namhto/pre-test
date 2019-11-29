@@ -7,8 +7,12 @@ public class CustomerAccount implements Account {
 
     private Double balance = 0.0;
 
-    public void add(Double addedAmount) {
-        balance += addedAmount;
+    public void add(Double addedAmount, AccountRule rule) throws IllegalAddedAmountException {
+        if (rule.addPermitted(addedAmount)) {
+            balance += addedAmount;
+        } else {
+            throw new IllegalAddedAmountException(addedAmount);
+        }
     }
 
     public Double getBalance() {

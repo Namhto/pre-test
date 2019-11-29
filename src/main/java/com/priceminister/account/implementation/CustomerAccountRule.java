@@ -19,13 +19,17 @@ import com.priceminister.account.*;
 
 public class CustomerAccountRule implements AccountRule {
 
-    /* (non-Javadoc)
-     * @see com.priceminister.account.AccountRule#withdrawPermitted(java.lang.Double, java.lang.Double)
-     */
+    @Override
     public boolean withdrawPermitted(Double currentBalance, Double withdrawnAmount) {
         boolean withdrawingPositiveAmount = withdrawnAmount >= 0;
         boolean thereIsEnoughBalance = currentBalance >= withdrawnAmount;
         return withdrawingPositiveAmount && thereIsEnoughBalance;
+    }
+
+    @Override
+    public boolean addPermitted(Double addedAmount) {
+        boolean addingPositiveAmount = addedAmount >= 0;
+        return addingPositiveAmount;
     }
 
 }

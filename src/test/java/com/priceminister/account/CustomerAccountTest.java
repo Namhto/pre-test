@@ -41,11 +41,16 @@ public class CustomerAccountTest {
      * Adds money to the account and checks that the new balance is as expected.
      */
     @Test
-    public void testAddPositiveAmount() {
-        customerAccount.add(10.0);
+    public void testAddPositiveAmount() throws IllegalAddedAmountException {
+        customerAccount.add(10.0, rule);
         assertEquals(Double.valueOf(10.0), customerAccount.getBalance());
-        customerAccount.add(5.0);
+        customerAccount.add(5.0, rule);
         assertEquals(Double.valueOf(15.0), customerAccount.getBalance());
+    }
+
+    @Test(expected = IllegalAddedAmountException.class)
+    public void testAddIllegalNegativeAmount() throws IllegalAddedAmountException {
+        customerAccount.add(-10.0, rule);
     }
     
     /**
@@ -56,8 +61,6 @@ public class CustomerAccountTest {
     public void testWithdrawAndReportBalanceIllegalBalance() throws IllegalBalanceException {
         customerAccount.withdrawAndReportBalance(10.0, rule);
     }
-    
-    // Also implement missing unit tests for the above functionalities.
 
     @Test(expected = IllegalBalanceException.class)
     public void testWithdrawAndReportBalanceIllegalNegativeWithdrawnAmount() throws IllegalBalanceException {
@@ -65,8 +68,8 @@ public class CustomerAccountTest {
     }
 
     @Test
-    public void testWithdrawAndReportBalanceSucceed() throws IllegalBalanceException {
-        customerAccount.add(50.0);
+    public void testWithdrawAndReportBalanceSucceed() throws IllegalBalanceException, IllegalAddedAmountException {
+        customerAccount.add(50.0, rule);
         assertEquals(Double.valueOf(40.0), customerAccount.withdrawAndReportBalance(10.0, rule));
     }
 
