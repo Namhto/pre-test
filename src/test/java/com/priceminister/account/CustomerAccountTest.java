@@ -23,11 +23,8 @@ public class CustomerAccountTest {
     private Account customerAccount;
     private AccountRule rule = new CustomerAccountRule();
 
-    /**
-     * @throws java.lang.Exception
-     */
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         customerAccount = new CustomerAccount();
     }
     
@@ -61,5 +58,16 @@ public class CustomerAccountTest {
     }
     
     // Also implement missing unit tests for the above functionalities.
+
+    @Test(expected = IllegalBalanceException.class)
+    public void testWithdrawAndReportBalanceIllegalNegativeWithdrawnAmount() throws IllegalBalanceException {
+        customerAccount.withdrawAndReportBalance(-10.0, rule);
+    }
+
+    @Test
+    public void testWithdrawAndReportBalanceSucceed() throws IllegalBalanceException {
+        customerAccount.add(50.0);
+        assertEquals(Double.valueOf(40.0), customerAccount.withdrawAndReportBalance(10.0, rule));
+    }
 
 }

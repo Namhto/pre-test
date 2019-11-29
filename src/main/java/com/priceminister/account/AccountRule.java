@@ -6,10 +6,11 @@ package com.priceminister.account;
 public interface AccountRule {
     
     /**
-     * Checks if the resulting account balance after a withdrawal is OK
+     * Checks if the account balance is OK after a withdrawal of an amount
      * for the specific type of account.
-     * @param resultingAccountBalance - the amount resulting of the withdrawal
+     * @param currentBalance - the account balance
+     * @param withdrawnAmount - the withdrawn amount
      * @return true if the operation is permitted, false otherwise
      */
-    boolean withdrawPermitted(Double resultingAccountBalance);
+    boolean withdrawPermitted(Double currentBalance, Double withdrawnAmount);
 }
