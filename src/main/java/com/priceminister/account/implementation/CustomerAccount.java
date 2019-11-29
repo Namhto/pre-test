@@ -8,7 +8,7 @@ public class CustomerAccount implements Account {
     private Double balance = 0.0;
 
     public void add(Double addedAmount) {
-        balance = addedAmount;
+        balance += addedAmount;
     }
 
     public Double getBalance() {
