@@ -20,8 +20,8 @@ import com.priceminister.account.implementation.*;
  */
 public class CustomerAccountTest {
     
-    Account customerAccount;
-    AccountRule rule;
+    private Account customerAccount;
+    private AccountRule rule;
 
     /**
      * @throws java.lang.Exception
@@ -36,7 +36,8 @@ public class CustomerAccountTest {
      */
     @Test
     public void testAccountWithoutMoneyHasZeroBalance() {
-        fail("not yet implemented");
+        assertNotNull("Balance of an empty account is null but should not", customerAccount.getBalance());
+        assertEquals(Double.valueOf(0.0), customerAccount.getBalance());
     }
     
     /**
