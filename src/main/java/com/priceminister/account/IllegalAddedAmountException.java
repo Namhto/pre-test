@@ -1,6 +1,6 @@
 package com.priceminister.account;
 
-public class IllegalAddedAmountException extends Exception {
+public class IllegalAddedAmountException extends RuntimeException {
 
 	private Double amount;
 

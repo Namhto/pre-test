@@ -7,7 +7,7 @@ public class CustomerAccount implements Account {
 
     private Double balance = 0.0;
 
-    public void add(Double addedAmount, AccountRule rule) throws IllegalAddedAmountException {
+    public void add(Double addedAmount, AccountRule rule) {
         if (rule.addPermitted(addedAmount)) {
             balance += addedAmount;
         } else {
@@ -19,7 +19,7 @@ public class CustomerAccount implements Account {
         return balance;
     }
 
-    public Double withdrawAndReportBalance(Double withdrawnAmount, AccountRule rule) throws IllegalBalanceException {
+    public Double withdrawAndReportBalance(Double withdrawnAmount, AccountRule rule) {
         if (rule.withdrawPermitted(balance, withdrawnAmount)) {
             balance -= withdrawnAmount;
             return balance;

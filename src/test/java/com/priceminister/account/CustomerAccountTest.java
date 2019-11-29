@@ -41,7 +41,7 @@ public class CustomerAccountTest {
      * Adds money to the account and checks that the new balance is as expected.
      */
     @Test
-    public void testAddPositiveAmount() throws IllegalAddedAmountException {
+    public void testAddPositiveAmount() {
         customerAccount.add(10.0, rule);
         assertEquals(Double.valueOf(10.0), customerAccount.getBalance());
         customerAccount.add(5.0, rule);
@@ -49,7 +49,7 @@ public class CustomerAccountTest {
     }
 
     @Test(expected = IllegalAddedAmountException.class)
-    public void testAddIllegalNegativeAmount() throws IllegalAddedAmountException {
+    public void testAddIllegalNegativeAmount() {
         customerAccount.add(-10.0, rule);
     }
     
@@ -58,17 +58,17 @@ public class CustomerAccountTest {
      * Use the logic contained in CustomerAccountRule; feel free to refactor the existing code.
      */
     @Test(expected = IllegalBalanceException.class)
-    public void testWithdrawAndReportBalanceIllegalBalance() throws IllegalBalanceException {
+    public void testWithdrawAndReportBalanceIllegalBalance() {
         customerAccount.withdrawAndReportBalance(10.0, rule);
     }
 
     @Test(expected = IllegalBalanceException.class)
-    public void testWithdrawAndReportBalanceIllegalNegativeWithdrawnAmount() throws IllegalBalanceException {
+    public void testWithdrawAndReportBalanceIllegalNegativeWithdrawnAmount() {
         customerAccount.withdrawAndReportBalance(-10.0, rule);
     }
 
     @Test
-    public void testWithdrawAndReportBalanceSucceed() throws IllegalBalanceException, IllegalAddedAmountException {
+    public void testWithdrawAndReportBalanceSucceed() {
         customerAccount.add(50.0, rule);
         assertEquals(Double.valueOf(40.0), customerAccount.withdrawAndReportBalance(10.0, rule));
     }
